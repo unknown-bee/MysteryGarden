@@ -1,0 +1,1447 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mystery Garden — Guest House · Walled City, Northern Cyprus</title>
+  <meta name="description" content="A hidden bohemian garden in the heart of the Walled City. Stone walls, kilim sofas, lush courtyards, and a breakfast you'll remember. Northern Cyprus.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400;1,600&family=Karla:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --soil:   #1A1208;
+      --brick:  #7A3020;
+      --rust:   #A84232;
+      --forest: #1B3A20;
+      --moss:   #3A6142;
+      --fern:   #5A8A5C;
+      --amber:  #C4862A;
+      --cream:  #EDE6D4;
+      --sand:   #D4C4A0;
+      --linen:  #F4EFE4;
+    }
+
+    /* SVG brick pattern as data URI */
+    --brick-pattern: url("data:image/svg+xml,%3Csvg width='120' height='60' viewBox='0 0 120 60' xmlns='http://www.w3.org/2000/svg'%3E%3Crect x='1' y='1' width='56' height='27' rx='1' fill='none' stroke='rgba(100%2C60%2C30%2C0.07)' stroke-width='1'/%3E%3Crect x='59' y='1' width='60' height='27' rx='1' fill='none' stroke='rgba(100%2C60%2C30%2C0.07)' stroke-width='1'/%3E%3Crect x='1' y='32' width='28' height='27' rx='1' fill='none' stroke='rgba(100%2C60%2C30%2C0.07)' stroke-width='1'/%3E%3Crect x='31' y='32' width='56' height='27' rx='1' fill='none' stroke='rgba(100%2C60%2C30%2C0.07)' stroke-width='1'/%3E%3Crect x='89' y='32' width='30' height='27' rx='1' fill='none' stroke='rgba(100%2C60%2C30%2C0.07)' stroke-width='1'/%3E%3C/svg%3E");
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Karla', sans-serif;
+      font-size: 16px;
+      line-height: 1.7;
+      color: var(--soil);
+      background: var(--linen);
+      overflow-x: hidden;
+    }
+
+    img {
+      max-width: 100%;
+      display: block;
+      image-rendering: -webkit-optimize-contrast;
+      image-rendering: crisp-edges;
+      image-rendering: auto;
+      -webkit-backface-visibility: hidden;
+      backface-visibility: hidden;
+    }
+    a { color: inherit; text-decoration: none; }
+
+    /* ── NAV ── */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      padding: 1.4rem 3rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      transition: background 0.4s, padding 0.4s;
+    }
+    nav.scrolled {
+      background: rgba(26, 18, 8, 0.96);
+      padding: 0.9rem 3rem;
+    }
+    .nav-logo {
+      font-family: 'Cormorant Garamond', serif;
+      font-weight: 400;
+      font-style: italic;
+      font-size: 1.3rem;
+      letter-spacing: 0.06em;
+      color: var(--linen);
+    }
+    .nav-links {
+      display: flex;
+      gap: 2.5rem;
+      list-style: none;
+    }
+    .nav-links a {
+      font-size: 0.72rem;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: rgba(244, 239, 228, 0.7);
+      transition: color 0.2s;
+    }
+    .nav-links a:hover { color: var(--linen); }
+    .nav-book {
+      font-size: 0.72rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--soil);
+      background: var(--amber);
+      padding: 0.6rem 1.5rem;
+      transition: background 0.2s;
+    }
+    .nav-book:hover { background: var(--sand); }
+    .lang-toggle {
+      font-size: 0.72rem;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: rgba(244, 239, 228, 0.65);
+      background: transparent;
+      border: 1px solid rgba(244, 239, 228, 0.25);
+      padding: 0.45rem 0.85rem;
+      cursor: pointer;
+      font-family: 'Karla', sans-serif;
+      transition: color 0.2s, border-color 0.2s;
+    }
+    .lang-toggle:hover { color: var(--linen); border-color: rgba(244,239,228,0.55); }
+
+    /* ── HERO ── */
+    .hero {
+      position: relative;
+      height: 100vh;
+      min-height: 620px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+    }
+    .hero-bg {
+      position: absolute;
+      inset: 0;
+      background-image: url('images/hero.png');
+      background-size: cover;
+      background-position: center 55%;
+      will-change: transform;
+    }
+    .hero-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(
+        170deg,
+        rgba(26, 18, 8, 0.82) 0%,
+        rgba(27, 58, 32, 0.50) 45%,
+        rgba(26, 18, 8, 0.78) 100%
+      );
+    }
+    /* Botanical corner decoration */
+    .hero::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0;
+      width: 320px; height: 320px;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 300 300' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' stroke='rgba(90%2C138%2C92%2C0.35)' stroke-width='1.5'%3E%3Cellipse cx='60' cy='180' rx='55' ry='28' transform='rotate(-40 60 180)'/%3E%3Cellipse cx='110' cy='140' rx='50' ry='24' transform='rotate(-55 110 140)'/%3E%3Cellipse cx='150' cy='90' rx='45' ry='20' transform='rotate(-65 150 90)'/%3E%3Cellipse cx='40' cy='240' rx='60' ry='22' transform='rotate(-30 40 240)'/%3E%3Cline x1='60' y1='180' x2='150' y2='90' stroke='rgba(90%2C138%2C92%2C0.25)' stroke-width='1'/%3E%3Cellipse cx='80' cy='260' rx='40' ry='18' transform='rotate(-20 80 260)'/%3E%3C/g%3E%3C/svg%3E");
+      background-size: contain;
+      background-repeat: no-repeat;
+      z-index: 1;
+      pointer-events: none;
+    }
+    .hero::after {
+      content: '';
+      position: absolute;
+      bottom: 0; right: 0;
+      width: 280px; height: 280px;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 300 300' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' stroke='rgba(90%2C138%2C92%2C0.3)' stroke-width='1.5'%3E%3Cellipse cx='240' cy='120' rx='55' ry='26' transform='rotate(40 240 120)'/%3E%3Cellipse cx='190' cy='160' rx='50' ry='22' transform='rotate(55 190 160)'/%3E%3Cellipse cx='150' cy='210' rx='45' ry='20' transform='rotate(65 150 210)'/%3E%3Cellipse cx='260' cy='60' rx='40' ry='18' transform='rotate(30 260 60)'/%3E%3Cline x1='240' y1='120' x2='150' y2='210' stroke='rgba(90%2C138%2C92%2C0.2)' stroke-width='1'/%3E%3C/g%3E%3C/svg%3E");
+      background-size: contain;
+      background-repeat: no-repeat;
+      background-position: bottom right;
+      z-index: 1;
+      pointer-events: none;
+    }
+    .hero-content {
+      position: relative;
+      z-index: 2;
+      text-align: center;
+      padding: 0 2rem;
+      max-width: 960px;
+    }
+    .hero-eyebrow {
+      font-family: 'Karla', sans-serif;
+      font-size: 0.68rem;
+      letter-spacing: 0.28em;
+      text-transform: uppercase;
+      color: var(--linen);
+      margin-bottom: 1.6rem;
+    }
+    .hero-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-weight: 300;
+      color: var(--linen);
+      line-height: 0.88;
+      margin-bottom: 1.8rem;
+    }
+    .hero-title .line1 {
+      display: block;
+      font-size: clamp(5.5rem, 13vw, 12rem);
+      font-style: italic;
+      letter-spacing: -0.01em;
+    }
+    .hero-title .line2 {
+      display: block;
+      font-size: clamp(5.5rem, 13vw, 12rem);
+      font-style: normal;
+      letter-spacing: 0.03em;
+      margin-top: -0.1em;
+    }
+    .hero-sub {
+      font-size: 0.75rem;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: rgba(244, 239, 228, 0.55);
+      margin-bottom: 2.8rem;
+      font-weight: 300;
+    }
+    .hero-cta {
+      display: inline-block;
+      font-size: 0.72rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--soil);
+      background: var(--amber);
+      padding: 0.9rem 2.8rem;
+      transition: background 0.2s;
+    }
+    .hero-cta:hover { background: var(--sand); }
+
+    .scroll-hint {
+      position: absolute;
+      bottom: 2.5rem;
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 2;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.6rem;
+      color: rgba(244, 239, 228, 0.35);
+      font-size: 0.62rem;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+    }
+    .scroll-line {
+      width: 1px;
+      height: 44px;
+      background: linear-gradient(to bottom, rgba(244,239,228,0.5), transparent);
+      animation: scrollDown 2.2s ease-in-out infinite;
+    }
+    @keyframes scrollDown {
+      0%   { transform: scaleY(0); transform-origin: top; opacity:1; }
+      50%  { transform: scaleY(1); transform-origin: top; opacity:1; }
+      51%  { transform: scaleY(1); transform-origin: bottom; opacity:1; }
+      100% { transform: scaleY(0); transform-origin: bottom; opacity:0; }
+    }
+
+    /* ── INTRO ── */
+    .intro {
+      padding: 7rem 3rem;
+      background-color: var(--linen);
+      background-image: url("data:image/svg+xml,%3Csvg width='120' height='60' viewBox='0 0 120 60' xmlns='http://www.w3.org/2000/svg'%3E%3Crect x='1' y='1' width='56' height='27' rx='1' fill='none' stroke='rgba(100%2C60%2C30%2C0.06)' stroke-width='1'/%3E%3Crect x='59' y='1' width='60' height='27' rx='1' fill='none' stroke='rgba(100%2C60%2C30%2C0.06)' stroke-width='1'/%3E%3Crect x='1' y='32' width='28' height='27' rx='1' fill='none' stroke='rgba(100%2C60%2C30%2C0.06)' stroke-width='1'/%3E%3Crect x='31' y='32' width='56' height='27' rx='1' fill='none' stroke='rgba(100%2C60%2C30%2C0.06)' stroke-width='1'/%3E%3Crect x='89' y='32' width='30' height='27' rx='1' fill='none' stroke='rgba(100%2C60%2C30%2C0.06)' stroke-width='1'/%3E%3C/svg%3E");
+      position: relative;
+    }
+    .intro::before {
+      content: '';
+      position: absolute;
+      top: 2rem; right: 2rem;
+      width: 200px; height: 350px;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 400' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' stroke='rgba(58%2C97%2C66%2C0.18)' stroke-width='1.5'%3E%3Cellipse cx='100' cy='340' rx='70' ry='30' transform='rotate(-15 100 340)'/%3E%3Cellipse cx='120' cy='280' rx='65' ry='28' transform='rotate(-25 120 280)'/%3E%3Cellipse cx='80' cy='220' rx='60' ry='26' transform='rotate(15 80 220)'/%3E%3Cellipse cx='110' cy='160' rx='55' ry='24' transform='rotate(-20 110 160)'/%3E%3Cellipse cx='90' cy='100' rx='50' ry='22' transform='rotate(10 90 100)'/%3E%3Cline x1='100' y1='380' x2='100' y2='40' stroke='rgba(58%2C97%2C66%2C0.12)' stroke-width='1'/%3E%3C/g%3E%3C/svg%3E");
+      background-size: contain;
+      background-repeat: no-repeat;
+      pointer-events: none;
+      opacity: 0.7;
+    }
+    .intro-inner {
+      max-width: 1100px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 5rem;
+      align-items: center;
+    }
+    .section-label {
+      font-size: 0.65rem;
+      letter-spacing: 0.26em;
+      text-transform: uppercase;
+      color: var(--moss);
+      margin-bottom: 1rem;
+      display: block;
+    }
+    .intro-text h2 {
+      font-family: 'Cormorant Garamond', serif;
+      font-weight: 400;
+      font-size: clamp(2.4rem, 4.5vw, 3.6rem);
+      line-height: 1.15;
+      text-wrap: balance;
+      margin-bottom: 1.5rem;
+      color: var(--soil);
+    }
+    .intro-text p {
+      font-size: 0.975rem;
+      line-height: 1.85;
+      color: #3a3020;
+      margin-bottom: 1rem;
+    }
+    .intro-quote {
+      margin: 2rem 0;
+      padding: 1.4rem 0 1.4rem 1.5rem;
+      border-left: 3px solid var(--moss);
+      font-family: 'Cormorant Garamond', serif;
+      font-style: italic;
+      font-size: 1.4rem;
+      line-height: 1.5;
+      color: var(--forest);
+    }
+    .intro-image { position: relative; }
+    .intro-image img {
+      width: 100%;
+      height: 540px;
+      object-fit: cover;
+    }
+    /* Stone frame effect */
+    .intro-image::before {
+      content: '';
+      position: absolute;
+      inset: -8px;
+      border: 2px solid rgba(122, 48, 32, 0.25);
+      z-index: -1;
+    }
+    .intro-stamp {
+      position: absolute;
+      bottom: -1.5rem;
+      right: -1.5rem;
+      background: var(--forest);
+      color: var(--linen);
+      padding: 1.6rem 2rem;
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 0.95rem;
+      font-weight: 300;
+      text-align: center;
+      line-height: 1.5;
+    }
+    .intro-stamp em {
+      display: block;
+      font-family: 'Karla', sans-serif;
+      font-style: normal;
+      font-size: 0.6rem;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      opacity: 0.6;
+      margin-bottom: 0.3rem;
+    }
+
+    /* ── PHOTO STRIP ── */
+    .photo-strip {
+      display: grid;
+      grid-template-columns: 2fr 1fr 1fr;
+      gap: 4px;
+      background: var(--soil);
+    }
+    .photo-strip-item { overflow: hidden; }
+    .photo-strip-item img {
+      width: 100%;
+      height: 360px;
+      object-fit: cover;
+      transition: transform 0.7s ease;
+      display: block;
+    }
+    .photo-strip-item:hover img { transform: scale(1.04); }
+
+    /* ── ROOMS ── */
+    .rooms {
+      background-color: var(--forest);
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 400 400' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='rgba(255%2C255%2C255%2C0.025)'%3E%3Ccircle cx='50' cy='50' r='80'/%3E%3Ccircle cx='350' cy='350' r='100'/%3E%3Ccircle cx='200' cy='150' r='60'/%3E%3C/g%3E%3C/svg%3E");
+      padding: 7rem 3rem;
+      position: relative;
+      overflow: hidden;
+    }
+    /* Plant silhouette bottom-right */
+    .rooms::after {
+      content: '';
+      position: absolute;
+      bottom: 0; right: 0;
+      width: 300px; height: 500px;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 300 500' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' stroke='rgba(90%2C138%2C92%2C0.2)' stroke-width='2'%3E%3Cellipse cx='150' cy='460' rx='80' ry='35' transform='rotate(-20 150 460)'/%3E%3Cellipse cx='190' cy='380' rx='75' ry='32' transform='rotate(-35 190 380)'/%3E%3Cellipse cx='120' cy='300' rx='70' ry='30' transform='rotate(15 120 300)'/%3E%3Cellipse cx='200' cy='220' rx='65' ry='28' transform='rotate(-25 200 220)'/%3E%3Cellipse cx='140' cy='140' rx='55' ry='25' transform='rotate(10 140 140)'/%3E%3Cline x1='155' y1='490' x2='155' y2='80' stroke='rgba(90%2C138%2C92%2C0.15)' stroke-width='1.5'/%3E%3C/g%3E%3C/svg%3E");
+      background-size: contain;
+      background-repeat: no-repeat;
+      background-position: bottom right;
+      pointer-events: none;
+    }
+    .rooms-inner {
+      max-width: 1100px;
+      margin: 0 auto;
+      position: relative;
+      z-index: 1;
+    }
+    .rooms .section-label { color: var(--fern); }
+    .rooms-header {
+      display: flex;
+      align-items: flex-end;
+      justify-content: space-between;
+      margin-bottom: 3rem;
+      gap: 2rem;
+    }
+    .rooms-header h2 {
+      font-family: 'Cormorant Garamond', serif;
+      font-weight: 400;
+      font-size: clamp(2.2rem, 4vw, 3.2rem);
+      color: var(--linen);
+      text-wrap: balance;
+      line-height: 1.15;
+    }
+    .rooms-header a {
+      font-size: 0.7rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--sand);
+      white-space: nowrap;
+      border-bottom: 1px solid rgba(212, 196, 160, 0.4);
+      padding-bottom: 2px;
+      transition: color 0.2s;
+    }
+    .rooms-header a:hover { color: var(--linen); }
+    .rooms-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 3px;
+    }
+    .room-card { position: relative; overflow: hidden; }
+    .room-card img {
+      width: 100%;
+      height: 430px;
+      object-fit: cover;
+      transition: transform 0.7s ease;
+      display: block;
+    }
+    .room-card:hover img { transform: scale(1.05); }
+    .room-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to top, rgba(26,18,8,0.95) 0%, rgba(26,18,8,0.05) 55%);
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      padding: 2rem;
+    }
+    .room-type {
+      font-size: 0.63rem;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--amber);
+      margin-bottom: 0.4rem;
+    }
+    .room-name {
+      font-family: 'Cormorant Garamond', serif;
+      font-weight: 400;
+      font-style: italic;
+      font-size: 1.8rem;
+      color: var(--linen);
+      margin-bottom: 0.4rem;
+    }
+    .room-detail {
+      font-size: 0.78rem;
+      color: rgba(244, 239, 228, 0.58);
+      line-height: 1.5;
+    }
+
+    /* ── GARDEN NIGHT ── */
+    .garden {
+      position: relative;
+      min-height: 600px;
+      display: flex;
+      align-items: center;
+      overflow: hidden;
+    }
+    .garden-bg {
+      position: absolute;
+      inset: 0;
+      background-image: url('images/garden-lush.png');
+      background-size: cover;
+      background-position: center;
+    }
+    .garden-veil {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(
+        to right,
+        rgba(26, 18, 8, 0.92) 0%,
+        rgba(26, 18, 8, 0.70) 40%,
+        rgba(26, 18, 8, 0.18) 100%
+      );
+    }
+    .garden-content {
+      position: relative;
+      padding: 7rem 3rem;
+      max-width: 580px;
+    }
+    .garden-content .section-label { color: var(--fern); }
+    .garden-content h2 {
+      font-family: 'Cormorant Garamond', serif;
+      font-weight: 400;
+      font-size: clamp(2.4rem, 4.5vw, 3.4rem);
+      color: var(--linen);
+      text-wrap: balance;
+      margin-bottom: 1.5rem;
+      line-height: 1.15;
+    }
+    .garden-content p {
+      font-weight: 300;
+      color: rgba(244, 239, 228, 0.82);
+      line-height: 1.85;
+      margin-bottom: 1rem;
+      font-size: 0.975rem;
+    }
+
+    /* ── SITTING ROOM feature ── */
+    .sitting {
+      background-color: var(--brick);
+      background-image: url("data:image/svg+xml,%3Csvg width='120' height='60' viewBox='0 0 120 60' xmlns='http://www.w3.org/2000/svg'%3E%3Crect x='1' y='1' width='56' height='27' rx='1' fill='none' stroke='rgba(255%2C255%2C255%2C0.07)' stroke-width='1'/%3E%3Crect x='59' y='1' width='60' height='27' rx='1' fill='none' stroke='rgba(255%2C255%2C255%2C0.07)' stroke-width='1'/%3E%3Crect x='1' y='32' width='28' height='27' rx='1' fill='none' stroke='rgba(255%2C255%2C255%2C0.07)' stroke-width='1'/%3E%3Crect x='31' y='32' width='56' height='27' rx='1' fill='none' stroke='rgba(255%2C255%2C255%2C0.07)' stroke-width='1'/%3E%3Crect x='89' y='32' width='30' height='27' rx='1' fill='none' stroke='rgba(255%2C255%2C255%2C0.07)' stroke-width='1'/%3E%3C/svg%3E");
+      padding: 7rem 3rem;
+    }
+    .sitting-inner {
+      max-width: 1100px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 5rem;
+      align-items: center;
+    }
+    .sitting-text .section-label { color: rgba(244,239,228,0.55); }
+    .sitting-text h2 {
+      font-family: 'Cormorant Garamond', serif;
+      font-weight: 400;
+      font-size: clamp(2.2rem, 4vw, 3.2rem);
+      color: var(--linen);
+      text-wrap: balance;
+      margin-bottom: 1.5rem;
+      line-height: 1.15;
+    }
+    .sitting-text p {
+      color: rgba(244, 239, 228, 0.8);
+      font-size: 0.975rem;
+      line-height: 1.85;
+      margin-bottom: 1rem;
+      font-weight: 300;
+    }
+    .sitting-image img {
+      width: 100%;
+      height: 480px;
+      object-fit: cover;
+    }
+
+    /* ── AMENITIES ── */
+    .amenities {
+      padding: 7rem 3rem;
+      background-color: var(--linen);
+      background-image: url("data:image/svg+xml,%3Csvg width='120' height='60' viewBox='0 0 120 60' xmlns='http://www.w3.org/2000/svg'%3E%3Crect x='1' y='1' width='56' height='27' rx='1' fill='none' stroke='rgba(100%2C60%2C30%2C0.055)' stroke-width='1'/%3E%3Crect x='59' y='1' width='60' height='27' rx='1' fill='none' stroke='rgba(100%2C60%2C30%2C0.055)' stroke-width='1'/%3E%3Crect x='1' y='32' width='28' height='27' rx='1' fill='none' stroke='rgba(100%2C60%2C30%2C0.055)' stroke-width='1'/%3E%3Crect x='31' y='32' width='56' height='27' rx='1' fill='none' stroke='rgba(100%2C60%2C30%2C0.055)' stroke-width='1'/%3E%3Crect x='89' y='32' width='30' height='27' rx='1' fill='none' stroke='rgba(100%2C60%2C30%2C0.055)' stroke-width='1'/%3E%3C/svg%3E");
+      position: relative;
+    }
+    .amenities::before {
+      content: '';
+      position: absolute;
+      bottom: 0; left: 0;
+      width: 220px; height: 400px;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 220 400' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' stroke='rgba(58%2C97%2C66%2C0.15)' stroke-width='1.5'%3E%3Cellipse cx='80' cy='370' rx='75' ry='30' transform='rotate(15 80 370)'/%3E%3Cellipse cx='60' cy='300' rx='65' ry='26' transform='rotate(25 60 300)'/%3E%3Cellipse cx='90' cy='230' rx='60' ry='24' transform='rotate(-10 90 230)'/%3E%3Cellipse cx='70' cy='160' rx='55' ry='22' transform='rotate(20 70 160)'/%3E%3Cline x1='80' y1='395' x2='80' y2='100' stroke='rgba(58%2C97%2C66%2C0.1)' stroke-width='1'/%3E%3C/g%3E%3C/svg%3E");
+      background-size: contain;
+      background-repeat: no-repeat;
+      background-position: bottom left;
+      pointer-events: none;
+    }
+    .amenities-inner { max-width: 1100px; margin: 0 auto; }
+    .amenities-inner h2 {
+      font-family: 'Cormorant Garamond', serif;
+      font-weight: 400;
+      font-size: clamp(2.2rem, 3.5vw, 3rem);
+      margin-bottom: 3rem;
+      text-wrap: balance;
+      line-height: 1.2;
+    }
+    .amenities-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 2.5rem 2rem;
+      border-top: 2px solid rgba(122, 48, 32, 0.2);
+      padding-top: 2.5rem;
+    }
+    .amenity { display: flex; flex-direction: column; gap: 0.5rem; }
+    .amenity-icon { font-size: 1.5rem; line-height: 1; margin-bottom: 0.2rem; }
+    .amenity-name { font-size: 0.82rem; font-weight: 500; color: var(--soil); }
+    .amenity-desc { font-size: 0.78rem; color: #5a4a38; line-height: 1.55; }
+
+    /* ── REVIEWS ── */
+    .reviews {
+      padding: 7rem 3rem;
+      background-color: var(--soil);
+      background-image: url("data:image/svg+xml,%3Csvg width='120' height='60' viewBox='0 0 120 60' xmlns='http://www.w3.org/2000/svg'%3E%3Crect x='1' y='1' width='56' height='27' rx='1' fill='none' stroke='rgba(255%2C255%2C255%2C0.04)' stroke-width='1'/%3E%3Crect x='59' y='1' width='60' height='27' rx='1' fill='none' stroke='rgba(255%2C255%2C255%2C0.04)' stroke-width='1'/%3E%3Crect x='1' y='32' width='28' height='27' rx='1' fill='none' stroke='rgba(255%2C255%2C255%2C0.04)' stroke-width='1'/%3E%3Crect x='31' y='32' width='56' height='27' rx='1' fill='none' stroke='rgba(255%2C255%2C255%2C0.04)' stroke-width='1'/%3E%3Crect x='89' y='32' width='30' height='27' rx='1' fill='none' stroke='rgba(255%2C255%2C255%2C0.04)' stroke-width='1'/%3E%3C/svg%3E");
+    }
+    .reviews-inner { max-width: 1100px; margin: 0 auto; }
+    .reviews .section-label { color: var(--fern); }
+    .reviews h2 {
+      font-family: 'Cormorant Garamond', serif;
+      font-weight: 400;
+      font-size: clamp(2rem, 3.5vw, 2.8rem);
+      color: var(--linen);
+      margin-bottom: 3rem;
+      text-wrap: balance;
+      line-height: 1.2;
+    }
+    .reviews-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 1.5rem;
+    }
+    .review-card {
+      background: rgba(255, 255, 255, 0.04);
+      border: 1px solid rgba(196, 134, 42, 0.2);
+      padding: 2rem;
+      position: relative;
+    }
+    .review-score {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      background: var(--amber);
+      color: var(--soil);
+      font-size: 0.75rem;
+      font-weight: 700;
+      padding: 0.3rem 0.7rem;
+      margin-bottom: 1.2rem;
+      letter-spacing: 0.05em;
+    }
+    .review-score::before {
+      content: '★';
+      font-size: 0.85rem;
+    }
+    .review-text {
+      font-family: 'Cormorant Garamond', serif;
+      font-style: italic;
+      font-size: 1.05rem;
+      line-height: 1.7;
+      color: rgba(244, 239, 228, 0.88);
+      margin-bottom: 1.5rem;
+    }
+    .review-author {
+      display: flex;
+      align-items: center;
+      gap: 0.8rem;
+      border-top: 1px solid rgba(196, 134, 42, 0.15);
+      padding-top: 1rem;
+    }
+    .review-avatar {
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      background: var(--brick);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1rem;
+      font-weight: 600;
+      color: var(--linen);
+      flex-shrink: 0;
+    }
+    .review-meta { display: flex; flex-direction: column; gap: 0.15rem; }
+    .review-name { font-size: 0.82rem; font-weight: 500; color: var(--linen); }
+    .review-country { font-size: 0.72rem; color: rgba(244, 239, 228, 0.45); }
+    .review-date { font-size: 0.68rem; color: rgba(244, 239, 228, 0.35); margin-left: auto; }
+    .reviews-source {
+      margin-top: 2rem;
+      text-align: center;
+      font-size: 0.72rem;
+      color: rgba(244, 239, 228, 0.3);
+      letter-spacing: 0.08em;
+    }
+    .reviews-source a { color: rgba(196, 134, 42, 0.6); text-decoration: underline; }
+    .whatsapp-link { color: #25D366; text-decoration: none; font-weight: 500; }
+    .whatsapp-link:hover { text-decoration: underline; }
+    .whatsapp-fab {
+      position: fixed;
+      bottom: 2rem;
+      right: 2rem;
+      z-index: 200;
+      width: 56px;
+      height: 56px;
+      border-radius: 50%;
+      background: #25D366;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 4px 16px rgba(0,0,0,0.25);
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+    .whatsapp-fab:hover { transform: scale(1.08); box-shadow: 0 6px 22px rgba(0,0,0,0.3); }
+    .whatsapp-fab svg { width: 28px; height: 28px; fill: #fff; }
+
+    @media (max-width: 960px) {
+      .reviews { padding: 5rem 1.5rem; }
+      .reviews-grid { grid-template-columns: 1fr; }
+    }
+
+    /* ── LOCATION ── */
+    .location {
+      padding: 7rem 3rem;
+      background-color: var(--forest);
+      background-image: url("data:image/svg+xml,%3Csvg width='120' height='60' viewBox='0 0 120 60' xmlns='http://www.w3.org/2000/svg'%3E%3Crect x='1' y='1' width='56' height='27' rx='1' fill='none' stroke='rgba(255%2C255%2C255%2C0.05)' stroke-width='1'/%3E%3Crect x='59' y='1' width='60' height='27' rx='1' fill='none' stroke='rgba(255%2C255%2C255%2C0.05)' stroke-width='1'/%3E%3Crect x='1' y='32' width='28' height='27' rx='1' fill='none' stroke='rgba(255%2C255%2C255%2C0.05)' stroke-width='1'/%3E%3Crect x='31' y='32' width='56' height='27' rx='1' fill='none' stroke='rgba(255%2C255%2C255%2C0.05)' stroke-width='1'/%3E%3Crect x='89' y='32' width='30' height='27' rx='1' fill='none' stroke='rgba(255%2C255%2C255%2C0.05)' stroke-width='1'/%3E%3C/svg%3E");
+    }
+    .location-inner {
+      max-width: 1100px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 4rem;
+      align-items: start;
+    }
+    .location .section-label { color: var(--fern); }
+    .location-text h2 {
+      font-family: 'Cormorant Garamond', serif;
+      font-weight: 400;
+      font-size: clamp(2rem, 3.5vw, 2.8rem);
+      color: var(--linen);
+      margin-bottom: 1.5rem;
+      text-wrap: balance;
+      line-height: 1.2;
+    }
+    .location-text p {
+      font-size: 0.975rem;
+      line-height: 1.85;
+      color: rgba(244, 239, 228, 0.78);
+      margin-bottom: 1rem;
+      font-weight: 300;
+    }
+    .location-facts {
+      margin-top: 2rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
+      border-top: 1px solid rgba(90, 138, 92, 0.4);
+      padding-top: 1.5rem;
+    }
+    .location-fact {
+      display: flex;
+      gap: 1rem;
+      font-size: 0.84rem;
+      color: rgba(244, 239, 228, 0.7);
+    }
+    .location-fact strong {
+      min-width: 120px;
+      font-weight: 500;
+      color: var(--linen);
+    }
+    .map-wrap {
+      height: 420px;
+      overflow: hidden;
+      border: 2px solid rgba(90, 138, 92, 0.3);
+    }
+    .map-wrap iframe { width: 100%; height: 100%; border: none; }
+
+    /* ── BOOK CTA ── */
+    .book-cta {
+      background-color: var(--soil);
+      background-image: url("data:image/svg+xml,%3Csvg width='120' height='60' viewBox='0 0 120 60' xmlns='http://www.w3.org/2000/svg'%3E%3Crect x='1' y='1' width='56' height='27' rx='1' fill='none' stroke='rgba(255%2C255%2C255%2C0.04)' stroke-width='1'/%3E%3Crect x='59' y='1' width='60' height='27' rx='1' fill='none' stroke='rgba(255%2C255%2C255%2C0.04)' stroke-width='1'/%3E%3Crect x='1' y='32' width='28' height='27' rx='1' fill='none' stroke='rgba(255%2C255%2C255%2C0.04)' stroke-width='1'/%3E%3Crect x='31' y='32' width='56' height='27' rx='1' fill='none' stroke='rgba(255%2C255%2C255%2C0.04)' stroke-width='1'/%3E%3Crect x='89' y='32' width='30' height='27' rx='1' fill='none' stroke='rgba(255%2C255%2C255%2C0.04)' stroke-width='1'/%3E%3C/svg%3E");
+      padding: 7rem 3rem;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+    .book-cta::before {
+      content: '';
+      position: absolute;
+      top: 0; left: -80px;
+      width: 250px; height: 100%;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 250 600' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' stroke='rgba(90%2C138%2C92%2C0.18)' stroke-width='1.5'%3E%3Cellipse cx='130' cy='560' rx='85' ry='35' transform='rotate(-15 130 560)'/%3E%3Cellipse cx='110' cy='470' rx='75' ry='30' transform='rotate(-25 110 470)'/%3E%3Cellipse cx='140' cy='380' rx='70' ry='28' transform='rotate(12 140 380)'/%3E%3Cellipse cx='115' cy='290' rx='65' ry='26' transform='rotate(-18 115 290)'/%3E%3Cellipse cx='135' cy='200' rx='58' ry='23' transform='rotate(8 135 200)'/%3E%3Cellipse cx='120' cy='115' rx='50' ry='20' transform='rotate(-20 120 115)'/%3E%3Cline x1='125' y1='590' x2='125' y2='60' stroke='rgba(90%2C138%2C92%2C0.12)' stroke-width='1.2'/%3E%3C/g%3E%3C/svg%3E");
+      background-size: contain;
+      background-repeat: no-repeat;
+      background-position: left center;
+      pointer-events: none;
+    }
+    .book-cta::after {
+      content: '';
+      position: absolute;
+      top: 0; right: -80px;
+      width: 250px; height: 100%;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 250 600' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' stroke='rgba(90%2C138%2C92%2C0.18)' stroke-width='1.5'%3E%3Cellipse cx='120' cy='560' rx='85' ry='35' transform='rotate(15 120 560)'/%3E%3Cellipse cx='140' cy='470' rx='75' ry='30' transform='rotate(25 140 470)'/%3E%3Cellipse cx='110' cy='380' rx='70' ry='28' transform='rotate(-12 110 380)'/%3E%3Cellipse cx='135' cy='290' rx='65' ry='26' transform='rotate(18 135 290)'/%3E%3Cellipse cx='115' cy='200' rx='58' ry='23' transform='rotate(-8 115 200)'/%3E%3Cellipse cx='130' cy='115' rx='50' ry='20' transform='rotate(20 130 115)'/%3E%3Cline x1='125' y1='590' x2='125' y2='60' stroke='rgba(90%2C138%2C92%2C0.12)' stroke-width='1.2'/%3E%3C/g%3E%3C/svg%3E");
+      background-size: contain;
+      background-repeat: no-repeat;
+      background-position: right center;
+      pointer-events: none;
+    }
+    .book-cta-inner { position: relative; z-index: 1; }
+    .book-cta h2 {
+      font-family: 'Cormorant Garamond', serif;
+      font-weight: 300;
+      font-style: italic;
+      font-size: clamp(2.8rem, 5.5vw, 4.5rem);
+      color: var(--linen);
+      margin-bottom: 1rem;
+      line-height: 1.2;
+    }
+    .book-cta p {
+      color: rgba(244, 239, 228, 0.55);
+      font-weight: 300;
+      font-size: 0.82rem;
+      letter-spacing: 0.1em;
+      margin-bottom: 2.5rem;
+    }
+    .btn {
+      display: inline-block;
+      font-size: 0.72rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--soil);
+      background: var(--amber);
+      padding: 1rem 3rem;
+      transition: background 0.2s;
+    }
+    .btn:hover { background: var(--sand); }
+
+    /* ── FOOTER ── */
+    footer {
+      background: var(--soil);
+      padding: 2.5rem 3rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+      border-top: 2px solid rgba(122, 48, 32, 0.4);
+    }
+    .footer-logo {
+      font-family: 'Cormorant Garamond', serif;
+      font-weight: 300;
+      font-style: italic;
+      font-size: 1.2rem;
+      color: var(--linen);
+    }
+    .footer-links {
+      display: flex;
+      gap: 2rem;
+      list-style: none;
+    }
+    .footer-links a {
+      font-size: 0.68rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: rgba(244, 239, 228, 0.4);
+      transition: color 0.2s;
+    }
+    .footer-links a:hover { color: var(--linen); }
+    .footer-copy { font-size: 0.68rem; color: rgba(244, 239, 228, 0.25); }
+
+    /* ── REVEALS ── */
+    .reveal {
+      opacity: 0;
+      transform: translateY(22px);
+      transition: opacity 0.75s ease, transform 0.75s ease;
+    }
+    .reveal.visible { opacity: 1; transform: none; }
+    .reveal-delay-1 { transition-delay: 0.1s; }
+    .reveal-delay-2 { transition-delay: 0.2s; }
+    .reveal-delay-3 { transition-delay: 0.3s; }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 960px) {
+      nav { padding: 1.2rem 1.5rem; }
+      nav.scrolled { padding: 0.8rem 1.5rem; }
+      .nav-links { display: none; }
+
+      .intro, .amenities, .location, .book-cta, .sitting { padding: 5rem 1.5rem; }
+      .rooms { padding: 5rem 1.5rem; }
+
+      .intro-inner, .sitting-inner, .location-inner { grid-template-columns: 1fr; gap: 3rem; }
+      .intro-stamp { right: 0; }
+      .intro::before { display: none; }
+      .amenities::before { display: none; }
+
+      .photo-strip { grid-template-columns: 1fr 1fr; }
+      .photo-strip-item:first-child { grid-column: 1 / -1; }
+
+      .rooms-grid { grid-template-columns: 1fr; }
+      .rooms-header { flex-direction: column; align-items: flex-start; }
+      .rooms::after { display: none; }
+
+      .amenities-grid { grid-template-columns: repeat(2, 1fr); }
+      .map-wrap { height: 300px; }
+      .garden-content { padding: 5rem 1.5rem; max-width: none; }
+
+      footer { flex-direction: column; text-align: center; gap: 1.2rem; padding: 2rem 1.5rem; }
+      .footer-links { flex-wrap: wrap; justify-content: center; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .reveal { transition: none; }
+      .scroll-line { animation: none; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav id="navbar">
+    <div class="nav-logo">Mystery Garden</div>
+    <ul class="nav-links">
+      <li><a href="#about" data-i18n="nav.about">About</a></li>
+      <li><a href="#rooms" data-i18n="nav.rooms">Rooms</a></li>
+      <li><a href="#sitting" data-i18n="nav.spaces">Common Spaces</a></li>
+      <li><a href="#location" data-i18n="nav.location">Location</a></li>
+    </ul>
+    <button class="lang-toggle" id="langBtn" onclick="switchLang()">TR</button>
+    <a href="https://www.booking.com/Share-TkFhA8z"
+       target="_blank" rel="noopener" class="nav-book" data-i18n="nav.reserve">Reserve</a>
+  </nav>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-bg" id="heroBg" aria-hidden="true"></div>
+    <div class="hero-overlay" aria-hidden="true"></div>
+    <div class="hero-content">
+      <p class="hero-eyebrow" data-i18n="hero.eyebrow">A Guest House Within Ancient Walls &middot; Northern Cyprus</p>
+      <h1 class="hero-title">
+        <span class="line1">Mystery</span>
+        <span class="line2">Garden</span>
+      </h1>
+      <p class="hero-sub" data-i18n="hero.sub">Walled City &middot; Northern Cyprus</p>
+      <a href="https://www.booking.com/Share-TkFhA8z"
+         target="_blank" rel="noopener" class="hero-cta" data-i18n="hero.cta">Reserve Your Stay</a>
+    </div>
+    <div class="scroll-hint" aria-hidden="true">
+      <div class="scroll-line"></div>
+      <span data-i18n="hero.scroll">Scroll</span>
+    </div>
+  </section>
+
+  <!-- INTRO -->
+  <section class="intro" id="about">
+    <div class="intro-inner">
+      <div class="intro-text">
+        <span class="section-label reveal" data-i18n="intro.label">The Story</span>
+        <h2 class="reveal reveal-delay-1" data-i18n-html="intro.h2">A living garden<br>behind an old wooden door</h2>
+        <p class="reveal reveal-delay-2" data-i18n="intro.p1">Hidden within the ancient walls of Mağusa, Mystery Garden is exactly what the name promises — and more. The stone building is old, the garden is serene and lush, and the family who runs it has been collecting beautiful things for a very long time. Kilim sofas, hanging gourds, Turkish ceramic plates, ornate ironwork.</p>
+        <blockquote class="intro-quote reveal reveal-delay-2" data-i18n="intro.quote">
+          "Highly rated for the garden, breakfast, and attentive service."
+        </blockquote>
+        <p class="reveal reveal-delay-3" data-i18n="intro.p2">Guests enjoy a lounge, outdoor seating area, and a patio with garden views. Rooms have private bathrooms with walk-in showers, air conditioning, and tiled floors. And a continental breakfast with local specialities and cheese — served in-room — that will take longer than you planned.</p>
+      </div>
+      <div class="intro-image reveal">
+        <img src="images/garden-path.png" alt="Garden path lined with daisies leading to the guest house" loading="lazy">
+        <div class="intro-stamp">
+          <em data-i18n="intro.stamp.em">Located in</em>
+          Mağusa<br>Northern Cyprus
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PHOTO STRIP -->
+  <div class="photo-strip">
+    <div class="photo-strip-item">
+      <img src="images/hero.png" alt="Stone exterior with bird-of-paradise flowers" loading="lazy">
+    </div>
+    <div class="photo-strip-item">
+      <img src="images/breakfast.png" alt="Mystery Garden breakfast spread — olives, eggs, fruit, local cheeses" loading="lazy">
+    </div>
+    <div class="photo-strip-item">
+      <img src="images/courtyard-day.png" alt="Outdoor courtyard seating area" loading="lazy">
+    </div>
+  </div>
+
+  <!-- ROOMS -->
+  <section class="rooms" id="rooms">
+    <div class="rooms-inner">
+      <div class="rooms-header">
+        <div>
+          <span class="section-label reveal" data-i18n="rooms.label">Where You'll Sleep</span>
+          <h2 class="reveal reveal-delay-1" data-i18n-html="rooms.h2">Rooms with<br>real character</h2>
+        </div>
+        <a href="https://www.booking.com/Share-TkFhA8z"
+           target="_blank" rel="noopener" class="reveal" data-i18n="rooms.all">View all rooms →</a>
+      </div>
+      <div class="rooms-grid">
+        <div class="room-card reveal">
+          <img src="images/room-canopy.png" alt="Ornate iron canopy bed with fairy lights" loading="lazy">
+          <div class="room-overlay">
+            <p class="room-type" data-i18n="rooms.type.double">Double Room</p>
+            <h3 class="room-name" data-i18n="rooms.type.double">Double Room</h3>
+            <p class="room-detail" data-i18n="rooms.detail.canopy">Iron canopy bed · Fairy lights · Stone walls</p>
+          </div>
+        </div>
+        <div class="room-card reveal reveal-delay-1">
+          <img src="images/room-double.png" alt="Double room with stone wall" loading="lazy">
+          <div class="room-overlay">
+            <p class="room-type" data-i18n="rooms.type.double">Double Room</p>
+            <h3 class="room-name" data-i18n="rooms.type.double">Double Room</h3>
+            <p class="room-detail" data-i18n="rooms.detail.double">Stone walls · En-suite · Garden views</p>
+          </div>
+        </div>
+        <div class="room-card reveal reveal-delay-2">
+          <img src="images/room-twin.png" alt="Twin room with stone wall and colourful bedspreads" loading="lazy">
+          <div class="room-overlay">
+            <p class="room-type" data-i18n="rooms.type.twin">Twin Room</p>
+            <h3 class="room-name" data-i18n="rooms.type.twin">Twin Room</h3>
+            <p class="room-detail" data-i18n="rooms.detail.twin">Two beds · Stone walls · En-suite</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- GARDEN NIGHT -->
+  <section class="garden" id="garden">
+    <div class="garden-bg" aria-hidden="true"></div>
+    <div class="garden-veil" aria-hidden="true"></div>
+    <div class="garden-content reveal">
+      <span class="section-label" data-i18n="garden.label">After Dark</span>
+      <h2 data-i18n-html="garden.h2">The courtyard comes<br>alive at night</h2>
+      <p data-i18n="garden.p1">By day the garden is lush and shaded, alive with plants that have been growing here for decades. By evening, when the lanterns come on and the city quietens outside the walls, it becomes something else entirely.</p>
+      <p data-i18n="garden.p2">Palms, hanging lights, stone arches lit from below. The kind of place that makes you want to sit still and say nothing for a while.</p>
+    </div>
+  </section>
+
+  <!-- SITTING ROOM -->
+  <section class="sitting" id="sitting">
+    <div class="sitting-inner">
+      <div class="sitting-text">
+        <span class="section-label reveal" data-i18n="sitting.label">Common Spaces</span>
+        <h2 class="reveal reveal-delay-1" data-i18n-html="sitting.h2">A room full of things<br>that tell a story</h2>
+        <p class="reveal reveal-delay-2" data-i18n="sitting.p1">The sitting room is not designed — it is accumulated. Red kilim sofas, hanging gourds, a samovar, photographs, lanterns, and a hundred objects collected over a lifetime. It opens onto the courtyard garden, so the line between inside and outside blurs.</p>
+        <p class="reveal reveal-delay-2" data-i18n="sitting.p2">This is where you will have your morning coffee. This is where you will stay longer than you meant to.</p>
+      </div>
+      <div class="sitting-image reveal">
+        <img src="images/common-sitting.png" alt="Kilim sitting room with Turkish decor, hanging gourds and courtyard view" loading="lazy">
+      </div>
+    </div>
+  </section>
+
+  <!-- AMENITIES -->
+  <section class="amenities">
+    <div class="amenities-inner">
+      <span class="section-label reveal" data-i18n="amenities.label">What's Included</span>
+      <h2 class="reveal reveal-delay-1" data-i18n-html="amenities.h2">Everything you need,<br>nothing you don't</h2>
+      <div class="amenities-grid">
+        <div class="amenity reveal">
+          <div class="amenity-icon">☕</div>
+          <div class="amenity-name" data-i18n="amenity.breakfast.name">Breakfast Included</div>
+          <div class="amenity-desc" data-i18n="amenity.breakfast.desc">Continental breakfast with local specialities and cheese served in-room each morning.</div>
+        </div>
+        <div class="amenity reveal reveal-delay-1">
+          <div class="amenity-icon">📶</div>
+          <div class="amenity-name" data-i18n="amenity.wifi.name">Free Wi-Fi</div>
+          <div class="amenity-desc" data-i18n="amenity.wifi.desc">Reliable connection throughout the property, including the garden.</div>
+        </div>
+        <div class="amenity reveal reveal-delay-2">
+          <div class="amenity-icon">❄️</div>
+          <div class="amenity-name" data-i18n="amenity.ac.name">Air Conditioning</div>
+          <div class="amenity-desc" data-i18n="amenity.ac.desc">Every room is climate controlled for warm Cyprus summers.</div>
+        </div>
+        <div class="amenity reveal reveal-delay-3">
+          <div class="amenity-icon">🌿</div>
+          <div class="amenity-name" data-i18n="amenity.garden.name">Serene Garden</div>
+          <div class="amenity-desc" data-i18n="amenity.garden.desc">A lush outdoor courtyard with seating — one of the most loved features of the property.</div>
+        </div>
+        <div class="amenity reveal">
+          <div class="amenity-icon">🚿</div>
+          <div class="amenity-name" data-i18n="amenity.bath.name">Private Bathrooms</div>
+          <div class="amenity-desc" data-i18n="amenity.bath.desc">En-suite bathrooms with walk-in showers in every room.</div>
+        </div>
+        <div class="amenity reveal reveal-delay-1">
+          <div class="amenity-icon">🅿️</div>
+          <div class="amenity-name" data-i18n="amenity.parking.name">Free Private Parking</div>
+          <div class="amenity-desc" data-i18n="amenity.parking.desc">Free on-site private parking available for all guests.</div>
+        </div>
+        <div class="amenity reveal reveal-delay-2">
+          <div class="amenity-icon">🚲</div>
+          <div class="amenity-name" data-i18n="amenity.bike.name">Bike Hire</div>
+          <div class="amenity-desc" data-i18n="amenity.bike.desc">Explore the walled city and surroundings by bicycle — available to hire on site.</div>
+        </div>
+        <div class="amenity reveal reveal-delay-3">
+          <div class="amenity-icon">🧳</div>
+          <div class="amenity-name" data-i18n="amenity.luggage.name">Luggage Storage</div>
+          <div class="amenity-desc" data-i18n="amenity.luggage.desc">Store your bags before check-in or after check-out with ease.</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- REVIEWS -->
+  <section class="reviews reveal">
+    <div class="reviews-inner">
+      <p class="section-label" data-i18n="reviews.label">Guest Voices</p>
+      <h2 data-i18n="reviews.h2">What Our Guests Say</h2>
+      <div class="reviews-grid">
+
+        <div class="review-card reveal">
+          <span class="review-score" data-i18n="reviews.score">10 · Exceptional</span>
+          <p class="review-text" data-i18n="review1.text">"Mr Tamer and his family are delightful hosts and the garden is a beautiful, tranquil oasis. The breakfast was great."</p>
+          <div class="review-author">
+            <div class="review-avatar">C</div>
+            <div class="review-meta">
+              <span class="review-name">Catherine</span>
+              <span class="review-country" data-i18n="country.uk">United Kingdom</span>
+            </div>
+            <span class="review-date">May 2026</span>
+          </div>
+        </div>
+
+        <div class="review-card reveal">
+          <span class="review-score" data-i18n="reviews.score">10 · Exceptional</span>
+          <p class="review-text" data-i18n="review2.text">"Hosts were the sweetest, kindest and most welcoming. The rooms are simple but functional. Breakfast was absolutely delicious."</p>
+          <div class="review-author">
+            <div class="review-avatar">J</div>
+            <div class="review-meta">
+              <span class="review-name">Julian</span>
+              <span class="review-country" data-i18n="country.uk">United Kingdom</span>
+            </div>
+            <span class="review-date">Apr 2026</span>
+          </div>
+        </div>
+
+        <div class="review-card reveal">
+          <span class="review-score" data-i18n="reviews.score">10 · Exceptional</span>
+          <p class="review-text" data-i18n="review3.text">"We had the most wonderful stay with this beautiful family! The breakfast was just perfect — everything was homemade with so much love and care. The charm of the room stole our hearts — they have a very unique style."</p>
+          <div class="review-author">
+            <div class="review-avatar">J</div>
+            <div class="review-meta">
+              <span class="review-name">Jack</span>
+              <span class="review-country" data-i18n="country.tr">Turkey</span>
+            </div>
+            <span class="review-date">Nov 2025</span>
+          </div>
+        </div>
+
+        <div class="review-card reveal">
+          <span class="review-score" data-i18n="reviews.score">10 · Exceptional</span>
+          <p class="review-text" data-i18n="review4.text">"I liked everything about this place: the atmosphere, its central position and above all the hosts."</p>
+          <div class="review-author">
+            <div class="review-avatar">M</div>
+            <div class="review-meta">
+              <span class="review-name">Mirjana</span>
+              <span class="review-country" data-i18n="country.rs">Serbia</span>
+            </div>
+            <span class="review-date">Oct 2025</span>
+          </div>
+        </div>
+
+      </div>
+      <p class="reviews-source" data-i18n-html="reviews.source">Reviews from <a href="https://www.booking.com/Share-TkFhA8z" target="_blank" rel="noopener">Booking.com</a> · All scores 10/10</p>
+    </div>
+  </section>
+
+  <!-- LOCATION -->
+  <section class="location" id="location">
+    <div class="location-inner">
+      <div class="location-text">
+        <span class="section-label reveal" data-i18n="location.label">Getting Here</span>
+        <h2 class="reveal reveal-delay-1" data-i18n-html="location.h2">Inside the walls<br>of the old city</h2>
+        <p class="reveal reveal-delay-2" data-i18n="location.p">Mystery Garden sits within the ancient walled city of Mağusa (Famagusta) — one of the most intact medieval urban centres in the Mediterranean. Stone streets, converted cathedrals, Venetian walls, and centuries of continuous life surround you on all sides.</p>
+        <dl class="location-facts reveal">
+          <div class="location-fact">
+            <strong data-i18n="loc.address">Address</strong>
+            <span>Naim Efendi Sk No:9, Gazimağusa 0392</span>
+          </div>
+          <div class="location-fact">
+            <strong data-i18n="loc.airport">Nearest Airport</strong>
+            <span data-i18n="loc.airport.val">Ercan International — approx. 30–45 min by car</span>
+          </div>
+          <div class="location-fact">
+            <strong data-i18n="loc.beach">Derinya Beach</strong>
+            <span data-i18n="loc.km.2">2.2 km away</span>
+          </div>
+          <div class="location-fact">
+            <strong data-i18n="loc.monastery">Agia Napa Monastery</strong>
+            <span data-i18n="loc.km.18">18 km away</span>
+          </div>
+          <div class="location-fact">
+            <strong>Ayia Napa</strong>
+            <span data-i18n="loc.km.19">19 km away</span>
+          </div>
+          <div class="location-fact">
+            <strong data-i18n="loc.checkin">Check-in</strong>
+            <span data-i18n="loc.checkin.val">From 14:00</span>
+          </div>
+          <div class="location-fact">
+            <strong data-i18n="loc.checkout">Check-out</strong>
+            <span data-i18n="loc.checkout.val">Until 11:00</span>
+          </div>
+          <div class="location-fact">
+            <strong data-i18n="loc.languages">Languages</strong>
+            <span data-i18n="loc.languages.val">English, Turkish</span>
+          </div>
+          <div class="location-fact">
+            <strong data-i18n="loc.contact">WhatsApp</strong>
+            <span><a href="https://wa.me/905338574455" target="_blank" rel="noopener" class="whatsapp-link">+90 533 857 44 55</a></span>
+          </div>
+        </dl>
+      </div>
+      <div class="map-wrap reveal">
+        <iframe
+          src="https://maps.google.com/maps?q=Naim+Efendi+Sk+No:9,+Gazima%C4%9Fusa&z=17&output=embed"
+          allowfullscreen loading="lazy"
+          referrerpolicy="no-referrer-when-downgrade"
+          title="Mystery Garden Guest House — Naim Efendi Sk No:9, Gazimağusa">
+        </iframe>
+      </div>
+    </div>
+  </section>
+
+  <!-- BOOK CTA -->
+  <section class="book-cta">
+    <div class="book-cta-inner reveal">
+      <h2 data-i18n="cta.h2">Come and stay a while.</h2>
+      <p data-i18n="cta.p">Rooms available through Booking.com · Instant confirmation</p>
+      <a href="https://www.booking.com/Share-TkFhA8z"
+         target="_blank" rel="noopener" class="btn" data-i18n="cta.btn">Check Availability</a>
+    </div>
+  </section>
+
+  <!-- WHATSAPP FAB -->
+  <a href="https://wa.me/905338574455" target="_blank" rel="noopener"
+     class="whatsapp-fab" aria-label="Chat on WhatsApp">
+    <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+      <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
+    </svg>
+  </a>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="footer-logo">Mystery Garden</div>
+    <ul class="footer-links">
+      <li><a href="#about" data-i18n="nav.about">About</a></li>
+      <li><a href="#rooms" data-i18n="nav.rooms">Rooms</a></li>
+      <li><a href="#sitting" data-i18n="nav.spaces">Common Spaces</a></li>
+      <li><a href="#location" data-i18n="nav.location">Location</a></li>
+    </ul>
+    <p class="footer-copy" data-i18n="footer.copy">© 2025 Mystery Garden Guest House</p>
+  </footer>
+
+  <script>
+    const navbar = document.getElementById('navbar');
+    window.addEventListener('scroll', () => {
+      navbar.classList.toggle('scrolled', window.scrollY > 60);
+    }, { passive: true });
+
+    const heroBg = document.getElementById('heroBg');
+    window.addEventListener('scroll', () => {
+      if (window.scrollY < window.innerHeight * 1.2) {
+        heroBg.style.transform = `translateY(${window.scrollY * 0.28}px)`;
+      }
+    }, { passive: true });
+
+    /* ── TRANSLATIONS ── */
+    const i18n = {
+      en: {
+        'nav.about': 'About',
+        'nav.rooms': 'Rooms',
+        'nav.spaces': 'Common Spaces',
+        'nav.location': 'Location',
+        'nav.reserve': 'Reserve',
+        'hero.eyebrow': 'A Guest House Within Ancient Walls · Northern Cyprus',
+        'hero.sub': 'Walled City · Northern Cyprus',
+        'hero.cta': 'Reserve Your Stay',
+        'hero.scroll': 'Scroll',
+        'intro.label': 'The Story',
+        'intro.h2': 'A living garden<br>behind an old wooden door',
+        'intro.p1': 'Hidden within the ancient walls of Mağusa, Mystery Garden is exactly what the name promises — and more. The stone building is old, the garden is serene and lush, and the family who runs it has been collecting beautiful things for a very long time. Kilim sofas, hanging gourds, Turkish ceramic plates, ornate ironwork.',
+        'intro.quote': '"Highly rated for the garden, breakfast, and attentive service."',
+        'intro.p2': 'Guests enjoy a lounge, outdoor seating area, and a patio with garden views. Rooms have private bathrooms with walk-in showers, air conditioning, and tiled floors. And a continental breakfast with local specialities and cheese — served in-room — that will take longer than you planned.',
+        'intro.stamp.em': 'Located in',
+        'rooms.label': "Where You'll Sleep",
+        'rooms.h2': 'Rooms with<br>real character',
+        'rooms.all': 'View all rooms →',
+        'rooms.type.double': 'Double Room',
+        'rooms.type.twin': 'Twin Room',
+        'rooms.detail.canopy': 'Iron canopy bed · Fairy lights · Stone walls',
+        'rooms.detail.double': 'Stone walls · En-suite · Garden views',
+        'rooms.detail.twin': 'Two beds · Stone walls · En-suite',
+        'garden.label': 'After Dark',
+        'garden.h2': 'The courtyard comes<br>alive at night',
+        'garden.p1': 'By day the garden is lush and shaded, alive with plants that have been growing here for decades. By evening, when the lanterns come on and the city quietens outside the walls, it becomes something else entirely.',
+        'garden.p2': 'Palms, hanging lights, stone arches lit from below. The kind of place that makes you want to sit still and say nothing for a while.',
+        'sitting.label': 'Common Spaces',
+        'sitting.h2': 'A room full of things<br>that tell a story',
+        'sitting.p1': 'The sitting room is not designed — it is accumulated. Red kilim sofas, hanging gourds, a samovar, photographs, lanterns, and a hundred objects collected over a lifetime. It opens onto the courtyard garden, so the line between inside and outside blurs.',
+        'sitting.p2': 'This is where you will have your morning coffee. This is where you will stay longer than you meant to.',
+        'amenities.label': "What's Included",
+        'amenities.h2': 'Everything you need,<br>nothing you don\'t',
+        'amenity.breakfast.name': 'Breakfast Included',
+        'amenity.breakfast.desc': 'Continental breakfast with local specialities and cheese served in-room each morning.',
+        'amenity.wifi.name': 'Free Wi-Fi',
+        'amenity.wifi.desc': 'Reliable connection throughout the property, including the garden.',
+        'amenity.ac.name': 'Air Conditioning',
+        'amenity.ac.desc': 'Every room is climate controlled for warm Cyprus summers.',
+        'amenity.garden.name': 'Serene Garden',
+        'amenity.garden.desc': 'A lush outdoor courtyard with seating — one of the most loved features of the property.',
+        'amenity.bath.name': 'Private Bathrooms',
+        'amenity.bath.desc': 'En-suite bathrooms with walk-in showers in every room.',
+        'amenity.parking.name': 'Free Private Parking',
+        'amenity.parking.desc': 'Free on-site private parking available for all guests.',
+        'amenity.bike.name': 'Bike Hire',
+        'amenity.bike.desc': 'Explore the walled city and surroundings by bicycle — available to hire on site.',
+        'amenity.luggage.name': 'Luggage Storage',
+        'amenity.luggage.desc': 'Store your bags before check-in or after check-out with ease.',
+        'reviews.label': 'Guest Voices',
+        'reviews.h2': 'What Our Guests Say',
+        'reviews.score': '10 · Exceptional',
+        'review1.text': '"Mr Tamer and his family are delightful hosts and the garden is a beautiful, tranquil oasis. The breakfast was great."',
+        'review2.text': '"Hosts were the sweetest, kindest and most welcoming. The rooms are simple but functional. Breakfast was absolutely delicious."',
+        'review3.text': '"We had the most wonderful stay with this beautiful family! The breakfast was just perfect — everything was homemade with so much love and care. The charm of the room stole our hearts — they have a very unique style."',
+        'review4.text': '"I liked everything about this place: the atmosphere, its central position and above all the hosts."',
+        'country.uk': 'United Kingdom',
+        'country.tr': 'Turkey',
+        'country.rs': 'Serbia',
+        'reviews.source': 'Reviews from <a href="https://www.booking.com/Share-TkFhA8z" target="_blank" rel="noopener">Booking.com</a> · All scores 10/10',
+        'location.label': 'Getting Here',
+        'location.h2': 'Inside the walls<br>of the old city',
+        'location.p': 'Mystery Garden sits within the ancient walled city of Mağusa (Famagusta) — one of the most intact medieval urban centres in the Mediterranean. Stone streets, converted cathedrals, Venetian walls, and centuries of continuous life surround you on all sides.',
+        'loc.address': 'Address',
+        'loc.airport': 'Nearest Airport',
+        'loc.airport.val': 'Ercan International — approx. 30–45 min by car',
+        'loc.beach': 'Derinya Beach',
+        'loc.km.2': '2.2 km away',
+        'loc.monastery': 'Agia Napa Monastery',
+        'loc.km.18': '18 km away',
+        'loc.km.19': '19 km away',
+        'loc.checkin': 'Check-in',
+        'loc.checkin.val': 'From 14:00',
+        'loc.checkout': 'Check-out',
+        'loc.checkout.val': 'Until 11:00',
+        'loc.languages': 'Languages',
+        'loc.languages.val': 'English, Turkish',
+        'cta.h2': 'Come and stay a while.',
+        'cta.p': 'Rooms available through Booking.com · Instant confirmation',
+        'cta.btn': 'Check Availability',
+        'loc.contact': 'WhatsApp',
+        'footer.copy': '© 2025 Mystery Garden Guest House',
+      },
+      tr: {
+        'nav.about': 'Hakkımızda',
+        'nav.rooms': 'Odalar',
+        'nav.spaces': 'Ortak Alanlar',
+        'nav.location': 'Konum',
+        'nav.reserve': 'Rezervasyon',
+        'hero.eyebrow': 'Tarihi Surlar İçinde Bir Pansiyon · Kuzey Kıbrıs',
+        'hero.sub': 'Surlu Şehir · Kuzey Kıbrıs',
+        'hero.cta': 'Rezervasyon Yap',
+        'hero.scroll': 'Kaydır',
+        'intro.label': 'Hikayemiz',
+        'intro.h2': 'Eski bir ahşap kapının<br>arkasında yaşayan bir bahçe',
+        'intro.p1': 'Mağusa\'nın tarihi surlarının içine gizlenmiş olan Mystery Garden, adının vaat ettiği her şeyi — ve daha fazlasını — sunuyor. Taş bina yüzyıllık, bahçe huzurlu ve yemyeşil; pansiyonu işleten aile ise uzun yıllardır güzel şeyler biriktiriyor. Kilim koltuklar, asılı kabaklar, Türk çini tabakları, işlemeli demir aksesuarlar.',
+        'intro.quote': '"Bahçesi, kahvaltısı ve özenli hizmetiyle yüksek puan aldı."',
+        'intro.p2': 'Misafirler; dinlenme salonu, açık oturma alanı ve bahçe manzaralı terasa sahip. Odalarda yürüyüş duşlu özel banyolar, klima ve fayans zemin bulunuyor. Odaya servis edilen, yerel lezzetler ve peynirlerle dolu bir Kıbrıs kahvaltısı sizi planladığınızdan çok daha uzun süre masada tutacak.',
+        'intro.stamp.em': 'Konum',
+        'rooms.label': 'Konaklama',
+        'rooms.h2': 'Gerçek karakterli<br>odalar',
+        'rooms.all': 'Tüm odaları görüntüle →',
+        'rooms.type.double': 'Çift Kişilik Oda',
+        'rooms.type.twin': 'İki Yataklı Oda',
+        'rooms.detail.canopy': 'Demir tenteli yatak · Peri ışıkları · Taş duvarlar',
+        'rooms.detail.double': 'Taş duvarlar · Özel banyo · Bahçe manzarası',
+        'rooms.detail.twin': 'İki ayrı yatak · Taş duvarlar · Özel banyo',
+        'garden.label': 'Gece Olunca',
+        'garden.h2': 'Avlu geceleri<br>hayat bulur',
+        'garden.p1': 'Gündüzleri bahçe yemyeşil ve gölgeli; onlarca yıldır burada büyüyen bitkilerle dolu. Akşam olup fenerler yanmaya ve şehir surların dışında sessizleşmeye başlayınca, her şey bambaşka bir hale bürünüyor.',
+        'garden.p2': 'Palmiyeler, asılı ışıklar, aşağıdan aydınlatılan taş kemerler. İnsanı hareketsizce oturup sessizce kalmaya davet eden türden bir yer.',
+        'sitting.label': 'Ortak Alanlar',
+        'sitting.h2': 'Her köşesi bir hikâye<br>anlatan bir oda',
+        'sitting.p1': 'Oturma odası tasarlanmamış — biriktirilmiş. Kırmızı kilim koltuklar, asılı kabaklar, bir semaver, fotoğraflar, fenerler ve bir ömür boyunca toplanmış yüzlerce nesne. Avlu bahçesine açılan bu oda, iç ve dış mekân sınırını bulanıklaştırıyor.',
+        'sitting.p2': 'Sabah kahvenizi burada içeceksiniz. Ve planladığınızdan çok daha uzun süre burada kalacaksınız.',
+        'amenities.label': 'Dahil Olanlar',
+        'amenities.h2': 'İhtiyacınız olan her şey,<br>fazlası yok',
+        'amenity.breakfast.name': 'Kahvaltı Dahil',
+        'amenity.breakfast.desc': 'Her sabah odaya servis edilen, yerel lezzetler ve peynirlerden oluşan Kıbrıs kahvaltısı.',
+        'amenity.wifi.name': 'Ücretsiz Wi-Fi',
+        'amenity.wifi.desc': 'Bahçe dahil tüm tesiste güvenilir internet bağlantısı.',
+        'amenity.ac.name': 'Klima',
+        'amenity.ac.desc': 'Sıcak Kıbrıs yazları için her oda iklimlendirmelidir.',
+        'amenity.garden.name': 'Huzurlu Bahçe',
+        'amenity.garden.desc': 'Oturma alanlarıyla donatılmış, gür yeşillikli avlu — tesisin en çok sevilen özelliği.',
+        'amenity.bath.name': 'Özel Banyolar',
+        'amenity.bath.desc': 'Her odada yürüyüş duşlu özel banyo.',
+        'amenity.parking.name': 'Ücretsiz Özel Otopark',
+        'amenity.parking.desc': 'Tüm misafirler için ücretsiz özel otopark imkânı.',
+        'amenity.bike.name': 'Bisiklet Kiralama',
+        'amenity.bike.desc': 'Surlu şehri ve çevresini bisikletle keşfetmek için tesiste kiralama seçeneği.',
+        'amenity.luggage.name': 'Bagaj Muhafazası',
+        'amenity.luggage.desc': 'Giriş öncesi veya çıkış sonrası çantalarınızı güvenle bırakabilirsiniz.',
+        'reviews.label': 'Misafir Yorumları',
+        'reviews.h2': 'Misafirlerimiz Ne Diyor',
+        'reviews.score': '10 · Mükemmel',
+        'review1.text': '"Bay Tamer ve ailesi çok sıcakkanlı ev sahipleri; bahçe ise güzel ve huzurlu bir vaha. Kahvaltı harikaydı."',
+        'review2.text': '"Ev sahipleri tanıdığımız en tatlı, en nazik ve en misafirperver insanlardı. Odalar sade ama kullanışlı. Kahvaltı kesinlikle harikaydı."',
+        'review3.text': '"Bu güzel aileyle en harika konaklamayı geçirdik! Kahvaltı mükemmeldi — her şey büyük bir sevgi ve özenle ev yapımıydı. Odanın büyüsü kalbimizi çaldı — çok özgün bir tarzları var."',
+        'review4.text': '"Bu yerdeki her şeyi beğendim: atmosfer, merkezi konumu ve her şeyden öte ev sahipleri."',
+        'country.uk': 'Birleşik Krallık',
+        'country.tr': 'Türkiye',
+        'country.rs': 'Sırbistan',
+        'reviews.source': '<a href="https://www.booking.com/Share-TkFhA8z" target="_blank" rel="noopener">Booking.com</a> yorumları · Tüm puanlar 10/10',
+        'location.label': 'Nasıl Gelinir',
+        'location.h2': 'Tarihi şehrin<br>surları içinde',
+        'location.p': 'Mystery Garden, Akdeniz\'in en sağlam korunmuş ortaçağ kent dokularından biri olan Mağusa\'nın (Gazimağusa) tarihi surları içinde yer alıyor. Taş sokaklar, dönüştürülmüş katedraller, Venedik surları ve yüzyıllardır kesintisiz süren yaşam her yanda.',
+        'loc.address': 'Adres',
+        'loc.airport': 'En Yakın Havalimanı',
+        'loc.airport.val': 'Ercan Uluslararası — yaklaşık 30–45 dakika araçla',
+        'loc.beach': 'Derinya Plajı',
+        'loc.km.2': '2,2 km uzaklıkta',
+        'loc.monastery': 'Ayia Napa Manastırı',
+        'loc.km.18': '18 km uzaklıkta',
+        'loc.km.19': '19 km uzaklıkta',
+        'loc.checkin': 'Giriş',
+        'loc.checkin.val': '14:00\'dan itibaren',
+        'loc.checkout': 'Çıkış',
+        'loc.checkout.val': '11:00\'a kadar',
+        'loc.languages': 'Diller',
+        'loc.languages.val': 'İngilizce, Türkçe',
+        'cta.h2': 'Gelin, bir süre kalın.',
+        'cta.p': 'Booking.com üzerinden rezervasyon · Anında onay',
+        'cta.btn': 'Uygunluğu Kontrol Et',
+        'loc.contact': 'WhatsApp',
+        'footer.copy': '© 2025 Mystery Garden Pansiyon',
+      }
+    };
+
+    let currentLang = localStorage.getItem('mg-lang') || 'en';
+
+    function applyLang(lang) {
+      document.querySelectorAll('[data-i18n]').forEach(el => {
+        const key = el.getAttribute('data-i18n');
+        if (i18n[lang][key] !== undefined) el.textContent = i18n[lang][key];
+      });
+      document.querySelectorAll('[data-i18n-html]').forEach(el => {
+        const key = el.getAttribute('data-i18n-html');
+        if (i18n[lang][key] !== undefined) el.innerHTML = i18n[lang][key];
+      });
+      const btn = document.getElementById('langBtn');
+      if (btn) btn.textContent = lang === 'en' ? 'TR' : 'EN';
+      document.documentElement.lang = lang;
+      localStorage.setItem('mg-lang', lang);
+      currentLang = lang;
+    }
+
+    function switchLang() {
+      applyLang(currentLang === 'en' ? 'tr' : 'en');
+    }
+
+    applyLang(currentLang);
+
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+          io.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+    document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+  </script>
+
+</body>
+</html>
