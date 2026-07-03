@@ -203,19 +203,39 @@
       transition: background 0.2s;
     }
     .nav-book:hover { background: var(--sand); }
-    .lang-toggle {
-      font-size: 0.72rem;
+    .lang-switch {
+      display: flex;
+      align-items: center;
+      background: rgba(255,255,255,0.08);
+      border: 1px solid rgba(244,239,228,0.15);
+      border-radius: 2px;
+      overflow: hidden;
+    }
+    .lang-opt {
+      font-family: 'Karla', sans-serif;
+      font-size: 0.68rem;
       letter-spacing: 0.14em;
       text-transform: uppercase;
-      color: rgba(244, 239, 228, 0.65);
+      color: rgba(244,239,228,0.45);
       background: transparent;
-      border: 1px solid rgba(244, 239, 228, 0.25);
-      padding: 0.45rem 0.85rem;
+      border: none;
+      padding: 0.45rem 0.8rem;
       cursor: pointer;
-      font-family: 'Karla', sans-serif;
-      transition: color 0.2s, border-color 0.2s;
+      transition: color 0.2s, background 0.2s;
+      line-height: 1;
     }
-    .lang-toggle:hover { color: var(--linen); border-color: rgba(244,239,228,0.55); }
+    .lang-opt:first-child {
+      border-right: 1px solid rgba(244,239,228,0.15);
+    }
+    .lang-opt.active {
+      background: var(--amber);
+      color: var(--soil);
+      font-weight: 500;
+    }
+    .lang-opt:not(.active):hover {
+      color: var(--linen);
+      background: rgba(255,255,255,0.06);
+    }
 
     /* ── HERO ── */
     .hero {
@@ -1003,7 +1023,10 @@
       <li><a href="#sitting" data-i18n="nav.spaces">Common Spaces</a></li>
       <li><a href="#location" data-i18n="nav.location">Location</a></li>
     </ul>
-    <button class="lang-toggle" id="langBtn" onclick="switchLang()">TR</button>
+    <div class="lang-switch">
+      <button class="lang-opt active" data-lang="en" onclick="switchLang('en')">EN</button>
+      <button class="lang-opt" data-lang="tr" onclick="switchLang('tr')">TR</button>
+    </div>
     <a href="https://www.booking.com/Share-TkFhA8z"
        target="_blank" rel="noopener" class="nav-book" data-i18n="nav.reserve">Reserve</a>
   </nav>
@@ -1527,15 +1550,16 @@
         const key = el.getAttribute('data-i18n-html');
         if (i18n[lang][key] !== undefined) el.innerHTML = i18n[lang][key];
       });
-      const btn = document.getElementById('langBtn');
-      if (btn) btn.textContent = lang === 'en' ? 'TR' : 'EN';
+      document.querySelectorAll('.lang-opt').forEach(btn => {
+        btn.classList.toggle('active', btn.dataset.lang === lang);
+      });
       document.documentElement.lang = lang;
       localStorage.setItem('mg-lang', lang);
       currentLang = lang;
     }
 
-    function switchLang() {
-      applyLang(currentLang === 'en' ? 'tr' : 'en');
+    function switchLang(lang) {
+      applyLang(lang || (currentLang === 'en' ? 'tr' : 'en'));
     }
 
     applyLang(currentLang);
